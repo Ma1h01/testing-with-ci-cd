@@ -50,7 +50,7 @@ jobs:
       - name: Upload pytest coverage results
         uses: actions/upload-artifact@v4
         with:
-          name: pytest-results-${{ matrix.python-version }}
-          path: coverage-${{ matrix.python-version }}.xml
+          name: pytest-results-${{ matrix.python-version }}-${{matrix.runners}}
+          path: coverage-${{ matrix.python-version }}-${{matrix.runners}}.xml
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
