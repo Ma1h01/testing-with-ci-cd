@@ -17,13 +17,13 @@ on:
 jobs:
   test-v3:
     strategy:
-      matrix:
-        runners: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-    runs-on: ${{runners}}
-    # runs-on: ubuntu-latest # <-- usually ubuntu-latest, windows-latest, or macos-latest
-    strategy:
       matrix: # <-- indicates we want to run this test job in a parametrized fashion, in this case specifying multiple Python versions
         python-version: ["3.9", "3.10", "3.11", "3.12"]
+        runners: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        
+    runs-on: ${{matrix.runners}}
+    # runs-on: ubuntu-latest # <-- usually ubuntu-latest, windows-latest, or macos-latest
+   
 
     steps:
       - uses: actions/checkout@v4 # <-- every job runs on a clean runner, so you almost always start a job by checking out the code
