@@ -16,7 +16,11 @@ on:
 
 jobs:
   test-v3:
-    runs-on: ubuntu-latest # <-- usually ubuntu-latest, windows-latest, or macos-latest
+    strategy:
+      matrix:
+        runners: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+    runs-on: ${{runners}}
+    # runs-on: ubuntu-latest # <-- usually ubuntu-latest, windows-latest, or macos-latest
     strategy:
       matrix: # <-- indicates we want to run this test job in a parametrized fashion, in this case specifying multiple Python versions
         python-version: ["3.9", "3.10", "3.11", "3.12"]
